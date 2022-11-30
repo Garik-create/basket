@@ -1,16 +1,12 @@
 package com.skypro.basket.controller;
 
-import com.skypro.basket.model.Basket;
-import com.skypro.basket.record.BasketRequest;
-import com.skypro.basket.servise.BasketService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.skypro.basket.service.BasketService;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
+import java.util.List;
 
 @RestController
+@RequestMapping("/store/order")
 public class BasketController {
     private final BasketService basketService;
 
@@ -18,15 +14,16 @@ public class BasketController {
         this.basketService = basketService;
     }
 
-    @GetMapping("/store/order/get")
-    public Collection<Integer> getAllProducts() {
-        return this.basketService.getProductsId();
+
+    @GetMapping("/get")
+    public List<Integer> get() {
+        return this.basketService.getFromBasket();
     }
 
-//    @PostMapping("/store/order/add")
-//    public Basket addProducts(@RequestBody BasketRequest basketRequest) {
-//        return this.basketService.addProduct(basketRequest);
-//    }
-
+    @GetMapping("/add")
+    public String add(@RequestParam("id") List<Integer> ids) {
+        this.basketService.addToBasket(ids);
+        return "Приняты параметры - " + ids;
+    }
 
 }

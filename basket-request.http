@@ -1,0 +1,13 @@
+###Получить список товаров в корзане
+GET http://localhost:8080/store/order/get
+
+### Добавить идентификаторы
+GET http://localhost:8080//store/order/add?id=1
+
+####Добавить товары в корзину
+#POST http://localhost:8080/store/order/add
+#Content-Type: application/json
+#
+#{
+#  "список товаров": 1
+#}

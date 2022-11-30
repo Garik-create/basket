@@ -1,21 +1,21 @@
 package com.skypro.basket.model;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.web.context.annotation.SessionScope;
+
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
+@Repository
+@SessionScope
 public class Basket {
-//    private Integer productId;
-    private ArrayList<Integer> productsId = new ArrayList<>();
+    private final List<Integer> productsId = new ArrayList<>();
 
-    public Basket(ArrayList<Integer> productsId) {
-        this.productsId = productsId;
+    public void addToProductsId(List<Integer> ids) {
+        productsId.addAll(ids);
     }
 
-    public ArrayList<Integer> getProductsId() {
-        return productsId;
-    }
-
-    public void setProductId(ArrayList<Integer> productsId) {
-        this.productsId = productsId;
+    public List<Integer> getProductsId() {
+        return this.productsId;
     }
 }
